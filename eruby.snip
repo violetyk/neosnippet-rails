@@ -1,0 +1,68 @@
+
+snippet e
+abbr <% %>
+options word
+  <% ${0} %>
+
+snippet ee
+abbr <%= %>
+options word
+  <%= ${0} %>
+
+snippet eif
+  <% if ${1:#:condition} %>
+  	${2:TARGET}
+	<% end %>
+
+
+
+# link <a> {{{
+snippet link_to
+abbr <a>
+options word
+  <%= link_to '${1:inner}', ${2:path} %>
+
+snippet link_to/delete_confirm
+abbr <a>
+options word
+  <%= link_to '${1:inner}', ${2:path}, method: :delete, data: {confirm: '${3:message}'} %>
+# }}}
+# form {{{
+
+snippet form_tag/url
+abbr <form>（URL直指定）
+options word
+  <%= form_tag('/${1:resources}') do %>
+    ${0}
+  <% end %>
+
+snippet form_tag/controller_action
+abbr <form>（controller, action指定）
+options word
+  <%= form_tag(:controller=>'${1}', :action=>'${2}') do %>
+    ${0}
+  <% end %>
+
+
+snippet text_area
+abbr <textarea>
+
+snippet submit_tag
+abbr <input type="submit">
+options word
+  <%= submit_tag('${1:value}') %>
+
+snippet image_submit_tag
+alias submit_tag_image
+abbr <input type="submit">（画像）
+options word
+  <%= image_submit_tag('${1:path_to_image.png}') %>
+
+# }}}
+# partial {{{
+snippet render
+options word
+  <%= render '${1:file}' %>
+
+
+# }}}

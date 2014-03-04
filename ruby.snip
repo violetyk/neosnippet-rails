@@ -1,0 +1,20 @@
+snippet p
+alias params
+abbr パラメータを取得する
+options word
+  params[:${1:id}]
+
+snippet redirect_to
+abbr 指定のパスにリダイレクトする
+options word
+  redirect_to ${1:path}
+
+snippet render
+abbr 指定のビューをレンダリングする
+options word
+  render '${1:view_name}'
+
+snippet render/nothing:true
+abbr ビューをレンダリングしないアクション
+options head
+  render nothing: true
