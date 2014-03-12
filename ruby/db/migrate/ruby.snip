@@ -1,0 +1,59 @@
+snippet add_column/string
+abbr カラム追加/文字列型
+options word
+  add_column :${1:table}, :${2:column}, :string${3:#:, options}${0}
+
+snippet add_column/text
+abbr カラム追加/テキスト型
+options word
+  add_column :${1:table}, :${2:column}, :text${3:#:, options}${0}
+
+snippet add_column/integer
+abbr カラム追加/整数型
+options word
+  add_column :${1:table}, :${2:column}, :integer${3:#:, options}${0}
+
+snippet add_column/float
+abbr カラム追加/浮動小数点型
+options word
+  add_column :${1:table}, :${2:column}, :float${3:#:, options}${0}
+
+snippet add_column/decimal
+abbr カラム追加/固定長整数型
+options word
+  add_column :${1:table}, :${2:column}, :decimal${3:#:, options}${0}
+
+snippet add_column/datetime
+abbr カラム追加/日時型
+options word
+  add_column :${1:table}, :${2:column}, :datetime${3:#:, options}${0}
+
+snippet add_column/timestamp
+abbr カラム追加/タイムスタンプ型
+options word
+  add_column :${1:table}, :${2:column}, :timestamp${3:#:, options}${0}
+
+snippet add_column/time
+abbr カラム追加/時刻型
+options word
+  add_column :${1:table}, :${2:column}, :time${3:#:, options}${0}
+
+snippet add_column/date
+abbr カラム追加/時刻型
+options word
+  add_column :${1:table}, :${2:column}, :date${3:#:, options}${0}
+
+snippet add_column/binary
+abbr カラム追加/バイナリ文字列型
+options word
+  add_column :${1:table}, :${2:column}, :binary${3:#:, options}${0}
+
+snippet add_column/boolean
+abbr カラム追加/真偽値型
+options word
+  add_column :${1:table}, :${2:column}, :boolean${3:#:, options}${0}
+
+snippet add_column/references
+abbr カラム追加/他テーブルへの外部キー(_idは自動。整数型）
+  add_column :${1:table}, :${2:foreign_table}, :references${0}
+
