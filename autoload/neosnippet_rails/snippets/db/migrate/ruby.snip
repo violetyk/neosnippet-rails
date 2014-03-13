@@ -1,3 +1,15 @@
+snippet create_table
+abbr テーブル作成
+  create_table :${1:table} do |t|
+    ${0}
+    t.timestamps
+  end
+
+snippet add_timestamps
+abbr カラム追加/created_at,updated_at
+options word
+  add_timestamps :${1:table}${0}
+
 snippet add_column/string
 abbr カラム追加/文字列型
 options word
@@ -57,3 +69,21 @@ snippet add_column/references
 abbr カラム追加/他テーブルへの外部キー(_idは自動。整数型）
   add_column :${1:table}, :${2:foreign_table}, :references${0}
 
+
+snippet option/not_null
+abbr NOT NULL制約
+regexp '^\s*add_column\|^\s*t\.\w\+'
+  null: false${0}
+
+snippet option/limit
+abbr カラムの最大長指定
+regexp '^\s*add_column.\+\(:string\|:text\|:integer\|:binary\)\|^\s*t\.\(string\|text\|integer\|binary\)'
+  limit: ${1:limit}${0}
+
+snippet option/default
+abbr デフォルト値
+  default: ${1:value}${0}
+
+snippet option/default
+abbr カラムの位置指定
+  after: :${1:column_name}${0}
