@@ -3,48 +3,48 @@ set cpo&vim
 
 let s:snippets = []
 
-function! neosnippet_rails#set_rails_snippets() "{{{
+function! neosnippet_rails#set_snippets() "{{{
 
-  if type(g:neosnippet#snippets_directory) != type([])
-    let g:neosnippet#snippets_directory = []
-  endif
+  " reset
+  call neosnippet_rails#unset_snippets()
+
 
   let buf_type = ''
   try
     let buf_type = rails#buffer().type_name()
   catch
-    return
+  finally
+    if !len(buf_type)
+      return
+    endif
   endtry
 
-  call neosnippet_rails#unset_rails_snippets()
+  let list = s:get_neosnippets_directory_list()
   let snippet_root = neosnippet_rails#get_snippets_root()
 
   if buf_type == 'model-arb'
-    echo snippet_root
+    call add(list, printf('%s/app/models', snippet_root))
+  elseif buf_type == 'view-erb'
+    call add(list, printf('%s/app/views', snippet_root))
+  else
+    echo printf('no rails-snippet for type:%s', buf_type)
   endif
-    " echo fnamemodify(expand('<sfile>'), ":p")
-    " let snippets_directory = [
-          " \ $HOME.'/.vim/snippets',
-          " \ $HOME.'/works/neosnippet-cakephp2',
-          " \ $HOME.'/works/neosnippet-rails',
-          " \]
-    " let g:neosnippet#snippets_directory = join(snippets_directory, ',')
+  call s:set_neosnippets_directory_list(list)
 endfunction "}}}
+function! neosnippet_rails#unset_snippets() "{{{
 
-function! neosnippet_rails#unset_rails_snippets() "{{{
+  let list = s:get_neosnippets_directory_list()
 
-  if type(g:neosnippet#snippets_directory) != type([])
-    let g:neosnippet#snippets_directory = []
-  endif
-
-  let l = neosnippet_rails#get_snippets_directories()
-  for d in l 
-    i = index(g:neosnippet#snippets_directory, d)
-    if d != -1
-      remove(g:neosnippet#snippets_directory, d)
+  for d in neosnippet_rails#get_snippets_directories()
+    let i = index(list, d)
+    if i != -1
+      echo d
+      call remove(list, i)
     endif
   endfor
+  call s:set_neosnippets_directory_list(list)
 endfunction "}}}
+
 function! neosnippet_rails#get_snippets_root() "{{{
   return finddir('autoload/neosnippet_rails/snippets', &runtimepath)
 endfunction "}}}
@@ -56,6 +56,22 @@ function! neosnippet_rails#get_snippets_directories() "{{{
   endfor
   return list
 endfunction "}}}
+
+function! s:set_neosnippets_directory_list(list) " {{{
+  if type(g:neosnippet#snippets_directory) == type([])
+    let g:neosnippet#snippets_directory = a:list
+  elseif type(g:neosnippet#snippets_directory) == type('')
+    let g:neosnippet#snippets_directory = join(a:list, ',')
+  endif
+  call neosnippet#init#_initialize()
+endfunction " }}}
+function! s:get_neosnippets_directory_list() " {{{
+  if type(g:neosnippet#snippets_directory) == type([])
+    return g:neosnippet#snippets_directory
+  elseif type(g:neosnippet#snippets_directory) == type('')
+    return split(g:neosnippet#snippets_directory, ',')
+  endif
+endfunction " }}}
 
 
 let &cpo = s:save_cpo

@@ -1,15 +1,15 @@
-" if exists('g:loaded_neosnippet_rails_vim')
-  " finish
-" endif
-" let g:loaded_neosnippet_rails_vim = 1
+if exists('g:loaded_neosnippet_rails_vim')
+  finish
+endif
+let g:loaded_neosnippet_rails_vim = 1
 
 let s:save_cpo = &cpo
 set cpo&vim
 
 augroup set_rails_snippets
   autocmd!
-  autocmd BufEnter *.rb,*.erb call neosnippet_rails#set_rails_snippets()
-  autocmd BufLeave *.rb,*.erb call neosnippet_rails#unset_rails_snippets()
+  autocmd BufEnter *.rb,*.erb call neosnippet_rails#set_snippets()
+  autocmd BufLeave *.rb,*.erb call neosnippet_rails#unset_snippets()
 augroup END
 
 let &cpo = s:save_cpo
