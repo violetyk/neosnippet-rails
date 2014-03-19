@@ -37,3 +37,9 @@ snippet after_save
 abbr コールバック/save後の最後
 options head
   after_save :${1}${0}
+
+
+snippet has_and_belongs_to_many
+abbr 多対多の関連を表現（は複数形）
+options head
+  has_and_belongs_to_many :${1:models}${2:#:, options}${0}

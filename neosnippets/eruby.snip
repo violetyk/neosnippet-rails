@@ -27,22 +27,43 @@ abbr <a>
 options word
   <%= link_to '${1:inner}', ${2:path}, method: :delete, data: {confirm: '${3:message}'} %>
 # }}}
-# form {{{
+
+# form_tag {{{
+
+snippet form_for
+abbr <form>（特定のモデル指定）
+options word
+  <%= form_for(@${1:model}) do |f| %>
+ 		${0}
+	<% end %>
+
+snippet form_for/url
+abbr <form>（特定のモデル指定/送信先オプション）
+options word
+  <%= form_for(@${1:model}, :url => {:action => '${2}'}) do |f| %>
+ 		${0}
+	<% end %>
+
+snippet form_for/html
+abbr <form>（特定のモデル指定/タグ属性オプション）
+options word
+  <%= form_for(@${1:model}, :html => {:multipart => true}) do |f| %>
+		${0}
+	<% end %>
 
 snippet form_tag/url
 abbr <form>（URL直指定）
 options word
-  <%= form_tag('/${1:resources}') do %>
-    ${0}
-  <% end %>
+  <%= form_tag('/${1:resources}', :method => :${2:post}) do %>
+		${0}
+	<% end %>
 
 snippet form_tag/controller_action
 abbr <form>（controller, action指定）
 options word
-  <%= form_tag(:controller=>'${1}', :action=>'${2}') do %>
-    ${0}
-  <% end %>
-
+  <%= form_tag(:controller => '${1}', :action => '${2}', :method => :${3:post}) do %>
+		${0}
+	<% end %>
 
 snippet text_area
 abbr <textarea>
@@ -59,6 +80,7 @@ options word
   <%= image_submit_tag('${1:path_to_image.png}') %>
 
 # }}}
+
 # partial {{{
 snippet render
 options word

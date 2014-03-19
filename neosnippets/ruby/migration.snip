@@ -5,6 +5,14 @@ abbr テーブル作成
     t.timestamps
   end
 
+snippet create_table/HABTM
+abbr テーブル作成
+  create_table :$1s_$2s, id: false do |t|
+    t.references :${1:author}
+    t.references :${2:book}
+  end
+  ${0}
+
 snippet add_timestamps
 abbr カラム追加/created_at,updated_at
 options word
