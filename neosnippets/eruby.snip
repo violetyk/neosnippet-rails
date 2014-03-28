@@ -16,6 +16,7 @@ snippet eif
 
 
 
+
 # link <a> {{{
 snippet link_to
 abbr <a>
@@ -88,3 +89,9 @@ options word
 
 
 # }}}
+
+
+snippet asset_path
+abbr assetファイルへのパスを取得
+options word
+  <%= asset_path '${1:path/to/resourcename}', type: :${2:javascript/stylesheet} %>${0}
