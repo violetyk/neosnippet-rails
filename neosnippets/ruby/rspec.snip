@@ -1,3 +1,6 @@
+include rspec-rails.snip
+include rspec-shoulda-matchers.snip
+
 snippet describe
 abbr describe do ... end
 options head
@@ -20,7 +23,7 @@ options head
   end
 
 
-snippet it
+snippet it do end
 abbr it do ... end
 options head
   it "${1:〜であること、仕様}" do
@@ -30,17 +33,17 @@ options head
 snippet let
 abbr 変数に値を入れてメモ化/遅延評価
 options head
-  let(:${1:name}) { ${2:#expression} }
+  let(:${1:name}) { ${2:#:expression} }
 
 snippet let!
 abbr 変数に値を入れる/各テスト実行前に評価
 options head
-  let!(:${1:name}) { ${2:#expression} }
+  let!(:${1:name}) { ${2:#:expression} }
 
 snippet subject
 abbr itに渡す
 options head
-  subject { ${1:#expression} }
+  subject { ${1:#:expression} }
 
 snippet before(:all)
 abbr 前処理/describeレベルで一度だけ実行
@@ -72,4 +75,233 @@ options head
   end
 
 
+snippet it
+abbr it {...}
+options head
+  it { ${0} }
+
+snippet expect()to
+abbr expect(actual)
+options word
+  expect(${1:#:actual}).to ${0}
+
+snippet expect{}to
+abbr expect { actual }
+options word
+  expect { ${1:#:actual} }.to ${0}
+
+
+snippet expect()to_not
+abbr expect(actual)
+options word
+  expect(${1:#:actual}).to_not ${0}
+
+snippet expect{}to_not
+abbr expect { actual }
+options word
+  expect { ${1:#:actual} }.to_not ${0}
+
+snippet and
+abbr matcherのand連結
+options word
+  .and {0}
+
+snippet or
+abbr matcherのor連結
+options word
+  .or {0}
+
+# built-in matchers
+snippet eq
+abbr matcher/同値である(==)こと
+options word
+  eq(${1:#:expected})
+
+snippet eql
+abbr matcher/同値である(eql?)こと
+options word
+  eql(${1:#:expected})
+
+snippet equal
+abbr matcher/同一オブジェクトである(equal?)こと
+options word
+  equal(${1:#:expected})
+
+snippet be
+abbr matcher/同一オブジェクトである(equal?)こと
+options word
+  be(${1:#:expected})
+
+snippet be gt
+abbr matcher/比較/より大きい(>)
+options word
+  be > ${1:#:expected}
+
+snippet be gt or eq
+abbr matcher/比較/以上(>=)
+options word
+  be >= ${1:#:expected}
+
+snippet be lt or eq
+abbr matcher/比較/以下(<=)
+options word
+  be <= ${1:#:expected}
+
+snippet be lt
+abbr matcher/比較/未満(<)
+options word
+  be < ${1:#:expected}
+
+snippet be within of
+abbr matcher/比較/expected ± delta
+options word
+  be_within(${2:#:delta}).of(${1:#:expected})
+
+snippet be_between
+abbr matcher/比較/minより大きくmaxより小さいこと
+options word
+  be_between(${1:#:min}, ${2:#:max})
+
+snippet be_between/inclusive
+abbr matcher/比較/minより大きくmaxより小さいこと(境界値を含む)
+options word
+  be_between(${1:#:min}, ${2:#:max}).inclusive
+
+snippet be_between/exclusive
+abbr matcher/比較/minより大きくmaxより小さいこと(境界値を含まない)
+options word
+  be_between(${1:#:min}, ${2:#:max}).exclusive
+
+snippet match/regexp
+abbr matcher/正規表現にマッチすること
+options word
+  match(/${1:#:regexp}/)
+
+snippet match/array,hash
+abbr matcher/配列やハッシュの中身がマッチすること
+options word
+  match(
+    ${1:#::a => \{:b => xxx, :c => xxx \}}
+  )
+
+snippet be an instance of
+abbr matcher/クラスのインスタンスであること(instance_of?)
+options word
+  be_an_instance_of(${1:#:expected})
+
+snippet be a
+abbr matcher/クラスのインスタンスであること(is_a?/kind_of?)
+options word
+  be_a(${1:#:expected})
+
+snippet be truthy
+abbr matcher/nilではなくfalseでもないこと
+options word
+  be_truthy
+
+snippet be true
+abbr matcher/trueであること
+options word
+  be true
+
+snippet be falsy
+abbr matcher/nilまたはfalseであること
+options word
+  be_falsy
+
+snippet be false
+abbr matcher/falseであること
+options word
+  be false
+
+snippet be nil
+abbr matcher/nilであること
+options word
+  be nil
+
+snippet be_xxx
+abbr matcher/be_xxx?であること
+options word
+  be_${1:#:xxx}
+
+snippet have_xxx
+abbr matcher/has_xxx?であること
+options word
+  have_${1:#:xxx}
+
+
+snippet raise_error
+abbr matcher/エラーをraiseすること
+options word
+  raise_error
+
+snippet raise_error(class)
+abbr matcher/エラーをraiseすること
+options word
+  raise_error(${1:#:ErrorClass})
+
+snippet raise_error(message)
+abbr matcher/エラーをraiseすること
+options word
+  raise_error("${1:#:message}")
+
+snippet raise_error(class,message)
+abbr matcher/エラーをraiseすること
+options word
+  raise_error(${1:#:ErrorClass}, "${2:#:message}")
+
+snippet throw_symbol
+abbr matcher/throw :symbol されること/catch(:symbol) do ... endの処理抜けに使う
+options word
+  throw_symbol
+
+snippet throw_symbol(:symbol)
+abbr matcher/throw :symbol されること/catch(:symbol) do ... endの処理抜けに使う
+options word
+  throw_symbol(${1:#::symbol})
+
+snippet throw_symbol(:symbol,value)
+abbr matcher/throw :symbol されること/catch(:symbol) do ... endの処理抜けに使う
+options word
+  throw_symbol(${1:#::symbol}, "${2:#:value}")
+
+snippet range cover
+abbr matcher/actualのRange内にcoverがあること
+options word
+  cover(${1:#:value})
+
+snippet include
+abbr matcher/コレクション/含むこと
+options word
+  include(${1:#:expected})
+
+snippet start_with
+abbr matcher/コレクション/〜で開始されること
+options word
+  start_with(${1:#:expected})
+
+snippet end_with
+abbr matcher/コレクション/〜で終了されること
+options word
+  end_with(${1:#:expected})
+
+snippet contain_exactly
+abbr matcher/コレクション/順番は問わず中身が同値であること
+options word
+  contain_exactly(${1:#:expected}${2:#:,expected, ...})
+
+snippet all(be_xxx)
+abbr matcher/コレクション全てが引数のmatcherでtrueになること
+options word
+  all(${1:#:matcher})
+
+snippet output to_stdout
+abbr matcher/標準出力に文字列を出力すること
+options word
+  output(/${1:#:regexp}/).to_stdout
+
+snippet output to_stderr
+abbr matcher/標準エラー出力に文字列を出力すること
+options word
+  output(/${1:#:regexp}/).to_stderr
 
