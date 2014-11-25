@@ -1,0 +1,75 @@
+snippet describe
+abbr describe do ... end
+options head
+  describe "${1:#methodなどテストする対象}" do
+    ${0}
+  end
+
+snippet context
+abbr context do ... end
+options head
+  context "${1:テストするときの状況}" do
+    ${0}
+  end
+
+snippet pending
+abbr pending do ... end
+options head
+  pending "${1:理由}" do
+    ${0}
+  end
+
+
+snippet it
+abbr it do ... end
+options head
+  it "${1:〜であること、仕様}" do
+    ${0}
+  end
+
+snippet let
+abbr 変数に値を入れてメモ化/遅延評価
+options head
+  let(:${1:name}) { ${2:#expression} }
+
+snippet let!
+abbr 変数に値を入れる/各テスト実行前に評価
+options head
+  let!(:${1:name}) { ${2:#expression} }
+
+snippet subject
+abbr itに渡す
+options head
+  subject { ${1:#expression} }
+
+snippet before(:all)
+abbr 前処理/describeレベルで一度だけ実行
+options head
+  before(:all) do
+    ${0}
+  end
+
+snippet before(:each)
+abbr 前処理/各テスト(it)毎に実行
+options head
+  before(:all) do
+    ${0}
+  end
+
+
+snippet after(:all)
+abbr 後処理/describeレベルで一度だけ実行
+options head
+  after(:all) do
+    ${0}
+  end
+
+snippet after(:each)
+abbr 後処理/各テスト(it)毎に実行
+options head
+  after(:all) do
+    ${0}
+  end
+
+
+
