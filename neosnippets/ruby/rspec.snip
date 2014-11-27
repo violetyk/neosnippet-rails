@@ -45,6 +45,11 @@ abbr itに渡す
 options head
   subject { ${1:#:expression} }
 
+snippet subject(:name)
+abbr itに渡す
+options head
+  subject(${1:#::name}) { ${2:#:expression} }
+
 snippet before(:all)
 abbr 前処理/describeレベルで一度だけ実行
 options head

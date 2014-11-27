@@ -1,0 +1,95 @@
+snippet after_find
+abbr callback/find系メソッドで検索対象があった時
+options head
+  after_find :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet after_initialize
+abbr callback/インスタンス化されたとき
+options head
+  after_initialize :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet before_validation
+abbr callback/validateの前
+options head
+  before_validation :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet after_validation
+abbr callback/validateの後、before_saveの前
+options head
+  after_validation :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet before_save
+abbr callback/after_validationの後、before_create/before_updateの前
+options head
+  before_save :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet before_create
+abbr callback/before_saveの後、createの直前
+options head
+  before_create :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet after_create
+abbr callback/create後、after_saveの直前
+options head
+  after_create :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet before_update
+abbr callback/before_saveの後、updateの直前
+options head
+  before_update :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet after_update
+abbr callback/update後、after_saveの直前
+options head
+  after_update :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet after_save
+abbr callback/save後の最後
+options head
+  after_save :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet after_commit
+abbr callback/COMMITされた後
+options head
+  after_commit :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet after_rollback
+abbr callback/バリデーションエラーやROLLBACKされた後
+options head
+  after_rollback :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet after_touch
+abbr callback/#touchが呼び出された後
+options head
+  after_rollback :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet before_destroy
+abbr callback/#destroyでオブジェクトが削除される直前(#deleteはコールバック実行しない)
+options head
+  before_destroy :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet after_destroy
+abbr callback/#destroyでオブジェクトが削除された後(#deleteはコールバック実行しない)
+options head
+  after_destroy :${1:#:method}${2:#:, :if -> \{\}}${0}
+
+snippet skip_callback
+abbr callback/コールバックをスキップする
+options head
+  ${1:#:Model}.skip_callback(${2:#::save|:create|:update|:commit}, ${3:#::before|:after}${4:#:, :method})${0}
+
+snippet set_callback
+abbr callback/コールバックを設定する
+options head
+  ${1:#:Model}.set_callback(${2:#::save|:create|:update|:commit}, ${3:#::before|:after}, ${4:#::method}${5:#:, :if -> \{\}})${0}
+
+snippet reset_callbacks
+abbr callback/コールバックを削除する
+options head
+  ${1:#:Model}.reset_callbacks(${2:#::save|:create|:update|:commit})${0}
+
+
+snippet has_and_belongs_to_many
+abbr 多対多の関連を表現（は複数形）
+options head
+  has_and_belongs_to_many :${1:models}${2:#:, options}${0}
