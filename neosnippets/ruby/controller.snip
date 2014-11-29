@@ -1,4 +1,4 @@
-snippet p
+snippet params
 alias params
 abbr パラメータを取得する
 options word
@@ -29,3 +29,33 @@ abbr ビューをレンダリングしないアクション
 options head
   render nothing: true
 
+
+snippet before_action
+abbr Controller/アクションの前に実行するメソッドの指定
+options head
+  before_action ${1:#::method}${2:, only: [:edit, :update]}
+
+snippet after_action
+abbr Controller/アクションの後に実行するメソッドの指定
+options head
+  after_action ${1:#::method}${2:, only: [:edit, :update]}
+
+snippet around_action
+abbr Controller/アクションの前後に実行するメソッドの指定
+options head
+  around_action ${1:#::method}${2:, only: [:edit, :update]}
+
+snippet skip_before_action
+abbr Controller/アクションの前に実行するメソッドをスキップ
+options head
+  skip_before_action ${1:#::method}
+
+snippet skip_after_action
+abbr Controller/アクションの後に実行するメソッドをスキップ
+options head
+  skip_after_action ${1:#::method}
+
+snippet skip_around_action
+abbr Controller/アクションの前後に実行するメソッドをスキップ
+options head
+  skip_around_action ${1:#::method}

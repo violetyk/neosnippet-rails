@@ -1,0 +1,31 @@
+snippet each do
+options word
+  each do |${1:#:variable}|
+    ${2}
+  end
+
+snippet each_with_index
+options word
+  each_with_index do |${1:#:variable}, index|
+    ${0}
+  end
+
+snippet each.with_index
+options word
+  each.with_index(${1:#:n}) do |${2:#:variable}, index|
+    ${0}
+  end
+
+snippet each_cons
+abbr 順番にn個ずつずらしながら取り出す
+options word
+  each_cons(${1:#:n}) do |${2:#:variable}${3:#:, variable...}|
+    ${0}
+  end
+
+snippet each_slice
+abbr 順番にn個ずつに分割して取り出す
+options word
+  each_slice(${1:#:n}) do |${2:#:variable}${3:#:, variable...}|
+    ${0}
+  end

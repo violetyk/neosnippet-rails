@@ -1,3 +1,114 @@
+### ActiveRecord
+
+snippet find_by
+options word
+  find_by(${1:#::field} => ${2:#value})${0}
+
+snippet find_each{}
+options word
+  find_each do |${1:#::record}|
+    ${0}
+  end
+
+snippet order()
+options word
+  order(${1:#::field} => ${2:#::asc|:desc})${0}
+
+snippet limit()
+options word
+  limit(${1:#:limit})${0}
+
+snippet first
+options word
+  first
+
+snippet last
+options word
+  last
+
+snippet all
+options word
+  all
+
+snippet where()
+abbr ActiveRecord::Relation/where句
+options word
+  where(${1})${0}
+
+snippet where_not()
+abbr ActiveRecord::Relation/否定のwhere句
+options word
+  where.not(${1})${0}
+
+snippet scoping{}
+abbr ActiveRecord::Relation/ネスト
+options word
+  scoping do
+    ${1}
+  end
+
+snippet none
+abbr ActiveRecord::Relation/空のRelationオブジェクトを返す
+options word
+  none
+
+snippet pluck()
+abbr ActiveRecord::Relation/配列で取得
+options word
+  pluck(${1:#::field}${2:#:, :field})${0}
+
+snippet merge()
+abbr ActiveRecord::Relation
+options word
+  merge(${1:#:expression})
+
+snippet preload()
+abbr ActiveRecord::Relation/キャッシュする/複数クエリ
+options word
+  preload(${1:#::table_name})${0}
+
+snippet eager_load()
+abbr ActiveRecord::Relation/キャッシュする/１クエリ
+options word
+  eager_load(${1:#::table_name})${0}
+
+snippet joins()
+abbr ActiveRecord::Relation/キャッシュしない/１クエリ
+options word
+  joins(${1:#::table_name})${0}
+
+snippet includes()
+abbr ActiveRecord::Relation/キャッシュする
+options word
+  includes(${1:#::table_name})${0}
+
+snippet preference()
+abbr ActiveRecord::Relation
+options word
+  preference(${1:#::table_name})${0}
+
+
+snippet first_or_create
+abbr ActiveRecord::Relation/条件のレコードがなければ作成
+options word
+  first_or_create
+
+snippet first_or_create{}
+abbr ActiveRecord::Relation/条件のレコードがなければさらにカラムに値を与えて作成
+options word
+  first_or_create do |r|
+    ${1}
+  end
+
+snippet first_or_nitialize{}
+abbr ActiveRecord::Relation/条件のレコードがなければ作成（保存しない）
+options word
+  first_or_initialize
+
+
+
+### Callbacks
+
 snippet after_find
 abbr callback/find系メソッドで検索対象があった時
 options head
@@ -89,7 +200,49 @@ options head
   ${1:#:Model}.reset_callbacks(${2:#::save|:create|:update|:commit})${0}
 
 
+
+### Associations
+
 snippet has_and_belongs_to_many
 abbr 多対多の関連を表現（は複数形）
 options head
   has_and_belongs_to_many :${1:models}${2:#:, options}${0}
+
+
+### Scope
+
+snippet scope
+options head
+  scope ${1:#::name}, -> {${2:#:expression}}${0}
+
+snippet scope()
+options head
+  scope ${1:#::name}, -> (${2:#:arg}) {${3:#:expression}}${0}
+
+snippet default_scope
+options head
+  default_scope  -> {${1:#:expression}}${0}
+
+
+### 状態
+
+snippet new_record?
+options word
+abbr 新しいレコードかどうか
+  new_record?
+
+
+snippet persisted?
+options word
+abbr save済みかどうか
+  persisted?
+
+snippet changed?
+options word
+abbr saveしていないレコードがあるか
+  changed?
+
+snippet destroyed?
+options word
+abbr 削除済みレコードかどうか
+  destroyed?
