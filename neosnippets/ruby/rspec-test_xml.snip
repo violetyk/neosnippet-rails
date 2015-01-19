@@ -1,0 +1,27 @@
+snippet contain_xml
+abbr matcher/XMLを含むこと(最上位タグから指定)
+options word
+  contain_xml(<<-XML)
+    ${1:#:expected}
+  XML
+
+snippet contain_xml_structure
+abbr matcher/XMLの構造を含むこと(最上位タグから指定/タグの値は考慮しない)
+options word
+  contain_xml_structure(<<-XML)
+    ${1:#:expected}
+  XML
+
+snippet equal_xml
+abbr matcher/XMLが完全に等しいこと
+options word
+  equal_xml(<<-XML)
+    ${1:#:expected}
+  XML
+
+snippet equal_xml_structure
+abbr matcher/XMLの構造が等しいこと（タグの値は考慮しない）
+options word
+  equal_xml_structure(<<-XML)
+    ${1:#:expected}
+  XML

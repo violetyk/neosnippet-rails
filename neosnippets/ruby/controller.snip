@@ -29,6 +29,10 @@ abbr ビューをレンダリングしないアクション
 options head
   render nothing: true
 
+snippet render/xml
+abbr builderを使ったXMLのレンダリング
+options head
+  render ${1:#:view_name, }handlers: :builder, formats: :xml
 
 snippet before_action
 abbr Controller/アクションの前に実行するメソッドの指定

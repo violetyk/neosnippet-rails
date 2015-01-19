@@ -1,0 +1,12 @@
+# navigation
+
+snippet visit_url
+abbr capybara/指定したページをGET
+options head
+  visit '${1:#:/}'
+
+snippet visit_path
+abbr capybara/指定したページをGET
+options head
+  visit ${1:path}
+

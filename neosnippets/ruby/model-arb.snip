@@ -246,3 +246,127 @@ snippet destroyed?
 options word
 abbr 削除済みレコードかどうか
   destroyed?
+
+
+### Validation
+
+snippet validates
+abbr ヴァリデーションの設定
+options head
+  validates ${1:#::column}, ${2:validates_}
+
+snippet validates_presence
+abbr validates/必須チェック
+options word
+  presence: true
+
+snippet validates_presence{}
+abbr validates/必須チェック
+options word
+  presence: {
+		message: '${1:を入力してください}'${0}
+	}${0}
+
+snippet validates_uniqueness
+abbr validates/ユニークであること
+options word
+  uniqueness: true
+
+snippet validates_uniqueness{}
+abbr validates/ユニークであること
+options word
+  uniqueness: {
+		message: '${1:はすでに登録されています}',
+		scope: [${2:#::column/複数カラムでユニークかどうかの指定カラム配列}],
+		case_sensitive: false # 大文字小文字の区別
+	}${0}
+
+snippet validates_length{}
+abbr validates/長さのチェック
+options word
+  length: {
+		minimum: 2, # 2文字以上であること
+		maximum: 8, # 8文字以下であること
+		in: 2..8, # 2文字以上8文字以下であること
+		is: 10, # 10文字であること
+		message: '${1:を正しく入力してください}'
+	}${0}
+
+snippet validates_format{}
+abbr validates/正規表現チェック
+options word
+  format: {
+		with: /${1:Regexp}/,
+		message: '${1:を正しく入力してください}'
+	}${0}
+
+snippet validates_numericality{}
+abbr validates/数値か小数点であること
+options word
+  numericality: {
+		message: '${1:は数値か小数点で入力してください'}
+	}${0}
+
+snippet validates_numericality_only_integer{}
+abbr validates/整数値のチェック
+options word
+  numericality: {
+		only_integer: true,
+		greater_than: 3, # > 3
+		greater_than_or_equal_to: 1, # >= 3
+		equal_to: 4, # == 4
+		less_than: 5, # < 5
+		less_than_or_equal_to: 1, # <= 5
+		odd: true, # 奇数
+		even: true, # 偶数
+		message: '${1:を正しく入力してください'}
+	}${0}
+
+snippet validates_inclusion
+abbr validates/コレクションに含まれていること
+options word
+  inclusion: {
+		in: %w(hoge fuga piyo),
+		message: '${1:を正しく入力してください'}
+	}${0}
+
+snippet validates_exclusion
+abbr validates/コレクションに含まれているいないこと
+options word
+  exclusion: {
+		in: %w(hoge fuga piyo),
+		message: '${1:を正しく入力してください'}
+	}${0}
+
+snippet validates_on
+abbr validates/オプション/保存されるタイミングの指定
+options word
+  on: ${1:#::create/:update/(context:の:symbol)}
+
+snippet validates_if
+abbr validates/オプション/検証する条件の指定
+options word
+  if: ${1:#::symbol/Proc/"method?"}
+
+snippet validates_unless
+abbr validates/オプション/検証する条件の指定
+options word
+  unless: ${1:#::symbol/Proc/"method?"}
+
+snippet validates_allow_nil
+abbr validates/オプション/nilを許可
+options word
+  allow_nil: true
+
+snippet validates_allow_blank
+abbr validates/オプション/空を許可
+options word
+  allow_blank: true
+
+snippet validates_with_options
+abbr validates/複数のバリデーション定義をまとめる
+options head
+  with_options on: ${1:#::create/:update/(context:の:symbol)} do |context|
+		context.validates ${2:#::column}, ${3:validates_}${0}
+	end
+

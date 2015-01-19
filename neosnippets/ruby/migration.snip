@@ -95,3 +95,12 @@ abbr デフォルト値
 snippet option/after
 abbr カラムの位置指定
   after: :${1:column_name}${0}
+
+snippet remove_column
+abbr カラム削除
+  remove_column :${1:table}, :${2:column}
+
+snippet rename_column
+abbr カラム名変更
+  rename_column :${1:table}, :${2:from}, :${3:to}
+

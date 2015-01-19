@@ -1,5 +1,7 @@
 include rspec-rails.snip
 include rspec-shoulda-matchers.snip
+include rspec-test_xml.snip
+include capybara.snip
 
 snippet describe
 abbr describe do ... end
@@ -60,7 +62,7 @@ options head
 snippet before(:each)
 abbr 前処理/各テスト(it)毎に実行
 options head
-  before(:all) do
+  before(:each) do
     ${0}
   end
 
@@ -75,7 +77,7 @@ options head
 snippet after(:each)
 abbr 後処理/各テスト(it)毎に実行
 options head
-  after(:all) do
+  after(:each) do
     ${0}
   end
 
