@@ -6,21 +6,21 @@ include capybara.snip
 snippet describe
 abbr describe do ... end
 options head
-  describe "${1:#methodなどテストする対象}" do
+  describe '${1:#methodなどテストする対象}' do
     ${0}
   end
 
 snippet context
 abbr context do ... end
 options head
-  context "${1:テストするときの状況}" do
+  context '${1:テストするときの状況}' do
     ${0}
   end
 
 snippet pending
 abbr pending do ... end
 options head
-  pending "${1:理由}" do
+  pending '${1:理由}' do
     ${0}
   end
 
@@ -28,7 +28,7 @@ options head
 snippet it do end
 abbr it do ... end
 options head
-  it "${1:〜であること、仕様}" do
+  it '${1:〜であること、仕様}' do
     ${0}
   end
 
@@ -81,6 +81,10 @@ options head
     ${0}
   end
 
+snippet allow_to_recieve_and_return
+abbr stub
+options head
+  allow(${1:#:object}).to receive(${2:#::method}).and_return ${3:#:value}
 
 snippet it
 abbr it {...}
