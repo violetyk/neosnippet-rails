@@ -203,10 +203,54 @@ options head
 
 ### Associations
 
-snippet has_and_belongs_to_many
-abbr 多対多の関連を表現（は複数形）
+snippet belongs_to
+abbr 1対多の関連を表現
 options head
-  has_and_belongs_to_many :${1:models}${2:#:, options}${0}
+  belongs_to ${1::table(singular)}${0}
+
+snippet has_one
+abbr 1対1の関連を表現
+options head
+  has_one ${1::table(singular)}${0}
+	accepts_nested_attributes_for $1${3:#:, allow_destroy: true}
+
+snippet has_one_through
+abbr 1対1の関連を表現（中間モデルあり/中間テーブルあり）
+options head
+  has_one ${1::mid_table(singular)}
+	has_one ${2::assoc_ables(singular)}, through: $1${0}
+
+snippet has_many
+abbr 1対多の関連を表現
+options head
+  has_many ${1::tables(plural)}${0}
+	accepts_nested_attributes_for $1${3:#:, allow_destroy: true}
+
+snippet has_many_through
+abbr 多対多の関連を表現（中間モデルあり/中間テーブルあり）
+options head
+  has_many ${1::mid_tables(plural)}
+	has_many ${2::assoc_ables(plural)}, through: $1${0}
+
+snippet has_and_belongs_to_many
+abbr 多対多の関連を表現（中間モデルなし/中間テーブルあり）
+options head
+  has_and_belongs_to_many ${1::models}${0}
+
+snippet belongs_to_polymorphic
+abbr 1対多の関連（複数のモデルに属す）関連先ではas:指定が必要
+options head
+  belongs_to ${1::polymorphism}, polymorphic: true${0}
+
+snippet has_many_polymorphic
+abbr 1対多の関連を表現（複数子供を持つ）関連先belongs_toではpolymorphic: trueが必要
+options head
+  has_many ${1::tables(plural)}, as: ${1::polymorphism}${0}
+
+snippet accepts_nested_attributes_for
+abbr 関連先も一緒に保存する設定(assoc_attributes=メソッドが追加される)
+options head
+  accepts_nested_attributes_for ${1::table(s)}${2:, allow_destroy: true}${3:, limit: 3}${4:, reject_if: :method or \{\}}${5:, update_only: true}${0}
 
 
 ### Scope
