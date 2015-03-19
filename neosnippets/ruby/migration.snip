@@ -104,3 +104,7 @@ snippet rename_column
 abbr カラム名変更
   rename_column :${1:table}, :${2:from}, :${3:to}
 
+snippet add_index
+abbr インデックス追加
+  add_index ${1::table}, [${2::field1, :field2}]${3:#:, unique: true}${4:#:, name: 'index_name'}${5:#:, length: 10}
+
