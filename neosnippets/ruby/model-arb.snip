@@ -382,6 +382,18 @@ options word
 		message: '${1:を正しく入力してください'}
 	}${0}
 
+snippet validate_custom
+abbr validates/カスタムバリデーション
+options word
+	validate :${1:#:validate_parameter"}
+	
+	def $1
+		${0}
+		if parameter.empty?
+			errors.add(:parameter, 'message')
+		end
+	end
+
 snippet validates_on
 abbr validates/オプション/保存されるタイミングの指定
 options word
@@ -413,4 +425,3 @@ options head
   with_options on: ${1:#::create/:update/(context:の:symbol)} do |context|
 		context.validates ${2:#::column}, ${3:validates_}${0}
 	end
-
